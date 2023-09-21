@@ -32,6 +32,8 @@ export const PostMessage = () => {
     if (!isLoggedIn) {
       return setIsLoginModalOpen(true);
     }
+    if (!message) return;
+
     //post message
     setUserFeed((prevFeed) => [
       ...prevFeed,
