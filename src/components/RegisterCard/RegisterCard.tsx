@@ -3,10 +3,10 @@ import { Button } from '../Button/Button';
 import { Card, CardBody, CardFooter, CardHeader } from '../Card/Card';
 import { TextInput } from '../Input/Input';
 
-export const LoginCard = ({
-  onRegisterClick,
+export const RegisterCard = ({
+  onLoginClick,
 }: {
-  onRegisterClick: () => void;
+  onLoginClick: () => void;
 }) => {
   return (
     <Flex
@@ -20,10 +20,10 @@ export const LoginCard = ({
         <CardHeader>
           <Flex gap='8px' flexDir='column' alignItems='center'>
             <Heading fontSize='14px' color='#6B6C70' fontWeight='500'>
-              WELCOME BACK
+              SIGN UP
             </Heading>
             <Heading fontSize='18px' fontWeight='600' color='white'>
-              Log into your account
+              Create an account to continue
             </Heading>
           </Flex>
         </CardHeader>
@@ -31,12 +31,17 @@ export const LoginCard = ({
           <Flex flexDirection='column' gap='16px'>
             <TextInput
               name='email'
-              placeholder='Enter your email or username'
-              label='Email or Username'
+              placeholder='Enter your email'
+              label='Email'
+            />
+            <TextInput
+              name='username'
+              placeholder='Enter your email'
+              label='Username'
             />
             <TextInput
               name='password'
-              placeholder='Enter your password'
+              placeholder='Choose a strong password'
               label='Password'
               type='password'
             />
@@ -44,11 +49,11 @@ export const LoginCard = ({
         </CardBody>
         <CardFooter>
           <Box marginTop='6px'>
-            <Button isFullWidth>Login Now</Button>
+            <Button isFullWidth>Continue</Button>
             <Flex fontSize='14px' gap='4px' marginTop='12px'>
-              <Text color='#7F8084'>Not registered yet?</Text>
-              <Button variant='secondary' onClick={onRegisterClick}>
-                Register →
+              <Text color='#7F8084'>Already have an account?</Text>
+              <Button variant='secondary' onClick={onLoginClick}>
+                Login →
               </Button>
             </Flex>
           </Box>

@@ -1,12 +1,46 @@
-import { Button, Flex, Text, Textarea } from '@chakra-ui/react';
+import { Flex, Text, Textarea } from '@chakra-ui/react';
+import { useState } from 'react';
+import { useAppContext } from '../../appState/context';
+import { Button } from '../Button/Button';
 import { Card, CardBody, CardFooter, CardHeader } from '../Card/Card';
+import { LoginCard } from '../LoginCard/LoginCard';
+import { Modal } from '../Modal/Modal';
+import { RegisterCard } from '../RegisterCard/RegisterCard';
 
 export const PostMessage = () => {
+  const { isLoggedIn } = useAppContext();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsregisterModalOpen] = useState(false);
+
+  const onRegisterClick = () => {
+    setIsLoginModalOpen(false);
+    setIsregisterModalOpen(true);
+  };
+
+  const onLoginClick = () => {
+    setIsregisterModalOpen(false);
+    setIsLoginModalOpen(true);
+  };
+
   const onPost = () => {
-    //
+    if (!isLoggedIn) {
+      setIsLoginModalOpen(true);
+    }
   };
   return (
     <div>
+      <Modal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+      >
+        <LoginCard onRegisterClick={onRegisterClick} />
+      </Modal>
+      <Modal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsregisterModalOpen(false)}
+      >
+        <RegisterCard onLoginClick={onLoginClick} />
+      </Modal>
       <Card>
         <CardHeader>
           <Flex flexDir='column' fontWeight='500' fontSize='18px'>
@@ -19,7 +53,7 @@ export const PostMessage = () => {
             justifyContent='center'
             alignItems='center'
             paddingY='16px'
-            paddingX='28px'
+            paddingX='16px'
           >
             <Flex
               backgroundColor='#27292D'
@@ -53,23 +87,7 @@ export const PostMessage = () => {
         </CardBody>
         <CardFooter>
           <Flex justifyContent='end'>
-            <Button
-              variant='solid'
-              backgroundColor='#4A96FF'
-              paddingX='38px'
-              paddingY='12px'
-              borderRadius='4px'
-              fontWeight='500'
-              _hover={{
-                backgroundColor: 'blue.500',
-              }}
-              onClick={onPost}
-              _focus={{
-                boxShadow: 'rgba(19, 100, 241, 0.5) 0px 0px 0px 4px',
-              }}
-            >
-              Post
-            </Button>
+            <Button onClick={onPost}>Post</Button>
           </Flex>
         </CardFooter>
       </Card>

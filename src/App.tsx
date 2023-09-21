@@ -3,10 +3,10 @@ import { useMemo, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { AppContext } from './appState/context';
 import { routes } from './constants';
+import { mockFeed } from './mock';
 import { Home } from './Routes/Home';
 import { Login } from './Routes/Login';
-import UserOne from './assets/user_1_thumbnail.svg';
-import UserTwo from './assets/user_2_thumbnail.svg';
+import { Register } from './Routes/Register';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,28 +16,7 @@ function App() {
     () => ({
       user: {
         name: userName,
-        feed: [
-          {
-            userName: 'Theresa Webb',
-            postedAt: Date.now(),
-            description:
-              'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
-            comments: ['world', 'hello'],
-            editedAt: 0,
-            emoji: `👋`,
-            image: UserOne,
-          },
-          {
-            userName: 'Marvin McKinney',
-            postedAt: Date.now(),
-            description:
-              'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
-            comments: ['world'],
-            editedAt: 83478487378,
-            emoji: `😞`,
-            image: UserTwo,
-          },
-        ],
+        feed: mockFeed,
       },
       isLoggedIn: isLoggedIn,
       setIsLoggedIn,
@@ -61,6 +40,7 @@ function App() {
         <Routes>
           <Route path={routes.home} element={<Home />} />
           <Route path={routes.login} element={<Login />} />
+          <Route path={routes.register} element={<Register />} />
           <Route path='*' element={<Navigate to={routes.home} replace />} />
         </Routes>
       </Flex>

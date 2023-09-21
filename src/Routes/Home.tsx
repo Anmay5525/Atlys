@@ -1,7 +1,6 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
-import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import { AppContext } from '../appState/context';
+import { useAppContext } from '../appState/context';
 import { routes } from '../constants';
 import { PostMessage } from '../components/PostMessage/PostMessage';
 import { UserFeed } from '../components/UserFeed/UserFeed';
@@ -10,7 +9,7 @@ export const Home = () => {
   const {
     user: { name, feed },
     isLoggedIn,
-  } = useContext(AppContext);
+  } = useAppContext();
 
   // if (!isLoggedIn) return <Navigate to={routes.login} replace />;
 

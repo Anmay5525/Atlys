@@ -8,7 +8,8 @@ export const UserFeed = ({ feed }: { feed: Feed[] }) => {
   return (
     <>
       {feed.map((feedItem, idx) => {
-        const { description, userName, comments, postedAt, image } = feedItem;
+        const { description, userName, comments, postedAt, image, emoji } =
+          feedItem;
         return (
           <Card key={`${userName}-${idx}`}>
             <CardHeader>
@@ -30,9 +31,25 @@ export const UserFeed = ({ feed }: { feed: Feed[] }) => {
               </Flex>
             </CardHeader>
             <CardBody backgroundColor='#191920' borderRadius='8px'>
-              <Text paddingY='16px' paddingX='28px'>
-                {description}
-              </Text>
+              <Flex
+                gap='16px'
+                justifyContent='center'
+                alignItems='center'
+                paddingY='16px'
+                paddingX='16px'
+              >
+                <Flex
+                  backgroundColor='#27292D'
+                  height='48px'
+                  width='48px'
+                  borderRadius='full'
+                  justifyContent='center'
+                  alignItems='center'
+                >
+                  {emoji}
+                </Flex>
+                <Text width='90%'>{description}</Text>
+              </Flex>
             </CardBody>
             <CardFooter>
               <Text
