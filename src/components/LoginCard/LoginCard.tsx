@@ -65,6 +65,7 @@ export const LoginCard = ({
               value={email}
               onChange={handleEmailChange}
               required
+              autoFocus
             />
             <TextInput
               name='password'

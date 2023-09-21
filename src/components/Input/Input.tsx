@@ -11,6 +11,7 @@ export const TextInput = ({
   onChange,
   type = 'text',
   required,
+  autoFocus,
 }: {
   label: string;
   name: string;
@@ -20,6 +21,7 @@ export const TextInput = ({
   onChange?: ChangeEventHandler<HTMLInputElement>;
   type?: HTMLInputTypeAttribute;
   required?: boolean;
+  autoFocus?: boolean;
 }) => {
   const [fieldType, setFieldType] = useState(type);
 
@@ -61,6 +63,7 @@ export const TextInput = ({
           onChange={onChange}
           type={fieldType}
           required={required}
+          autoFocus={autoFocus}
         />
         {isTypePassword ? (
           <Flex position='absolute' right='10px' alignItems='center' top='14px'>

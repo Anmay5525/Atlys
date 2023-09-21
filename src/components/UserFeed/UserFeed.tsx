@@ -3,6 +3,7 @@ import { Card, CardBody, CardFooter, CardHeader } from '../Card/Card';
 import { Feed } from '../../appState/context';
 import ChatIcon from '../../assets/chat_bubble.svg';
 import { ThreeDots } from '../ThreeDots';
+import { convertToReadableTimeInterval } from '../../utils';
 
 export const UserFeed = ({ feed }: { feed: Feed[] }) => {
   return (
@@ -21,7 +22,10 @@ export const UserFeed = ({ feed }: { feed: Feed[] }) => {
                   <Flex flexDir='column' fontWeight='500'>
                     <Text color='#C5C7CA'>{userName}</Text>
                     <Text color='#7F8084' fontSize='14px'>
-                      {Date.now() - postedAt} seconds ago
+                      {convertToReadableTimeInterval(
+                        Math.floor((Date.now() - postedAt) / 1000)
+                      )}{' '}
+                      ago
                     </Text>
                   </Flex>
                 </Flex>

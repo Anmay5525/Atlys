@@ -72,6 +72,7 @@ export const RegisterCard = ({
               value={email}
               onChange={handleEmailChange}
               required
+              autoFocus
             />
             <TextInput
               name='username'
