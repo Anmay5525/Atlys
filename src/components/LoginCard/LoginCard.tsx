@@ -2,7 +2,7 @@ import { Alert, Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../appState/context';
-import { routes } from '../../constants';
+import { emailRegex, routes } from '../../constants';
 import { Button } from '../Button/Button';
 import { Card, CardBody, CardFooter, CardHeader } from '../Card/Card';
 import { TextInput } from '../Input/Input';
@@ -30,6 +30,7 @@ export const LoginCard = ({
 
   const handleLogin = () => {
     if (!password || !email) return alert('Please fill all the fields');
+    else if (!emailRegex.test(email)) return alert('Please enter valid email!');
 
     setIsLoggedIn(true);
     setUserName(email);
@@ -40,7 +41,6 @@ export const LoginCard = ({
   return (
     <Flex
       flexDir='column'
-      margin='auto'
       justifyContent='center'
       alignItems='center'
       width={{ lg: '460px' }}

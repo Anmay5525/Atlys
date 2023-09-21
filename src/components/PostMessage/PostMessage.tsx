@@ -1,5 +1,5 @@
 import { Flex, Text, Textarea } from '@chakra-ui/react';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useAppContext } from '../../appState/context';
 import { Button } from '../Button/Button';
 import { Card, CardBody, CardFooter, CardHeader } from '../Card/Card';
@@ -12,6 +12,7 @@ export const PostMessage = () => {
   const { isLoggedIn, setUserFeed, user } = useAppContext();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [message, setMessage] = useState('');
 
   const onRegisterClick = () => {
     setIsLoginModalOpen(false);
@@ -23,25 +24,28 @@ export const PostMessage = () => {
     setIsLoginModalOpen(true);
   };
 
+  const handleMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
+  };
+
   const onPost = () => {
     if (!isLoggedIn) {
       return setIsLoginModalOpen(true);
     }
-
     //post message
     setUserFeed((prevFeed) => [
       ...prevFeed,
       {
         userName: user.name as string,
         postedAt: Date.now(),
-        description:
-          'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+        description: message,
         comments: ['dummy', 'comments', 'hello'],
         editedAt: 0,
         emoji: `👋`,
         image: UserOne,
       },
     ]);
+    setMessage('');
   };
 
   return (
@@ -105,6 +109,8 @@ export const PostMessage = () => {
                 height: '100px',
               }}
               transition='height 0.4s'
+              value={message}
+              onChange={handleMessageChange}
             />
           </Flex>
         </CardBody>

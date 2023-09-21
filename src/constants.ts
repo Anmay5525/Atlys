@@ -1,5 +1,7 @@
 export const routes = {
-  home: '',
+  home: '/',
   login: '/login',
   register: '/register',
 };
+
+export const emailRegex = /^\S+@\S+\.\S{2,6}$/;
