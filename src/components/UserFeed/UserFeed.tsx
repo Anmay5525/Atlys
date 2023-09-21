@@ -7,7 +7,7 @@ import { convertToReadableTimeInterval } from '../../utils';
 
 export const UserFeed = ({ feed }: { feed: Feed[] }) => {
   return (
-    <>
+    <Flex flexDirection='column' gap='16px' role='feed'>
       {feed.map((feedItem, idx) => {
         const { description, userName, comments, postedAt, image, emoji } =
           feedItem;
@@ -69,6 +69,6 @@ export const UserFeed = ({ feed }: { feed: Feed[] }) => {
           </Card>
         );
       })}
-    </>
+    </Flex>
   );
 };

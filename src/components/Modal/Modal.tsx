@@ -54,6 +54,7 @@ export const Modal = ({
         zIndex='10'
         justifyContent='center'
         alignItems='center'
+        aria-modal='true'
       >
         <Flex position='relative'>
           <Flex

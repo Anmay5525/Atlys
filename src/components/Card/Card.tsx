@@ -38,6 +38,7 @@ export const Card = ({ children }: { children: ReactNode }) => {
       borderRadius='8px'
       border='2px solid #35373B'
       width='100%'
+      role='presentation'
     >
       {children}
     </Flex>
