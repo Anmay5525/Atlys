@@ -9,6 +9,7 @@ export const Login = () => {
   const handleRegisterClick = () => {
     history(routes.register);
   };
+
   return (
     <Flex justifyContent='center' alignItems='center'>
       <LoginCard onRegisterClick={handleRegisterClick} />

@@ -16,6 +16,9 @@ interface AppState {
     feed: Array<Feed>;
   };
   isLoggedIn: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserName: React.Dispatch<React.SetStateAction<string>>;
+  setUserFeed: React.Dispatch<React.SetStateAction<Feed[]>>;
 }
 
 export const AppContext = createContext({} as AppState);

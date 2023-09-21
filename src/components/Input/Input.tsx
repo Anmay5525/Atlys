@@ -1,5 +1,5 @@
 import { Flex, Input, Text } from '@chakra-ui/react';
-import { MouseEventHandler, HTMLInputTypeAttribute } from 'react';
+import { HTMLInputTypeAttribute, ChangeEventHandler } from 'react';
 
 export const TextInput = ({
   label,
@@ -7,16 +7,18 @@ export const TextInput = ({
   placeholder,
   autoComplete,
   value,
-  onClick,
+  onChange,
   type,
+  required,
 }: {
   label: string;
   name: string;
   placeholder?: string;
   autoComplete?: string;
   value?: string;
-  onClick?: MouseEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   type?: HTMLInputTypeAttribute;
+  required?: boolean;
 }) => {
   return (
     <Flex flexDir='column' gap='8px' width='100%'>
@@ -44,8 +46,9 @@ export const TextInput = ({
         borderRadius='4px'
         width='100%'
         value={value}
-        onClick={onClick}
+        onChange={onChange}
         type={type ?? 'text'}
+        required={required}
       />
     </Flex>
   );

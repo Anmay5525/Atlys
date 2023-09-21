@@ -6,40 +6,63 @@ import { Card, CardBody, CardFooter, CardHeader } from '../Card/Card';
 import { LoginCard } from '../LoginCard/LoginCard';
 import { Modal } from '../Modal/Modal';
 import { RegisterCard } from '../RegisterCard/RegisterCard';
+import UserOne from '../../assets/user_1_thumbnail.svg';
 
 export const PostMessage = () => {
-  const { isLoggedIn } = useAppContext();
+  const { isLoggedIn, setUserFeed, user } = useAppContext();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isRegisterModalOpen, setIsregisterModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
   const onRegisterClick = () => {
     setIsLoginModalOpen(false);
-    setIsregisterModalOpen(true);
+    setIsRegisterModalOpen(true);
   };
 
   const onLoginClick = () => {
-    setIsregisterModalOpen(false);
+    setIsRegisterModalOpen(false);
     setIsLoginModalOpen(true);
   };
 
   const onPost = () => {
     if (!isLoggedIn) {
-      setIsLoginModalOpen(true);
+      return setIsLoginModalOpen(true);
     }
+
+    //post message
+    setUserFeed((prevFeed) => [
+      ...prevFeed,
+      {
+        userName: user.name as string,
+        postedAt: Date.now(),
+        description:
+          'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+        comments: ['dummy', 'comments', 'hello'],
+        editedAt: 0,
+        emoji: `👋`,
+        image: UserOne,
+      },
+    ]);
   };
+
   return (
     <div>
       <Modal
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
       >
-        <LoginCard onRegisterClick={onRegisterClick} />
+        <LoginCard
+          onRegisterClick={onRegisterClick}
+          onSuccess={() => setIsLoginModalOpen(false)}
+        />
       </Modal>
       <Modal
         isOpen={isRegisterModalOpen}
-        onClose={() => setIsregisterModalOpen(false)}
+        onClose={() => setIsRegisterModalOpen(false)}
       >
-        <RegisterCard onLoginClick={onLoginClick} />
+        <RegisterCard
+          onLoginClick={onLoginClick}
+          onSuccess={() => setIsRegisterModalOpen(false)}
+        />
       </Modal>
       <Card>
         <CardHeader>

@@ -17,7 +17,7 @@ export const Home = () => {
     <Flex width={{ lg: '700px', sm: '90%' }} paddingTop='70px' flexDir='column'>
       <Flex flexDirection='column' gap='12px'>
         <Heading color='#C5C7CA' fontSize='28px' fontWeight='500'>
-          Hello {name}
+          Hello {name || 'there'}
         </Heading>
         <Text color='#7F8084'>
           How are you doing today? Would you like to share something with the

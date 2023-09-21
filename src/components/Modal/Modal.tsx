@@ -83,6 +83,5 @@ export const Modal = ({
       </Flex>
     </>,
     document.body
-    // document.getElementById('modal-root') as Element
   );
 };

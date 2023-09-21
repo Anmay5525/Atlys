@@ -10,9 +10,13 @@ export const Register = () => {
     history(routes.login);
   };
 
+  const goToHome = () => {
+    history(routes.home);
+  };
+
   return (
     <Flex justifyContent='center' alignItems='center'>
-      <RegisterCard onLoginClick={handleLoginClick} />
+      <RegisterCard onLoginClick={handleLoginClick} onSuccess={goToHome} />
     </Flex>
   );
 };

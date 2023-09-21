@@ -11,18 +11,20 @@ import { Register } from './Routes/Register';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
+  const [userFeed, setUserFeed] = useState(mockFeed);
 
   const providerValue = useMemo(
     () => ({
       user: {
         name: userName,
-        feed: mockFeed,
+        feed: userFeed,
       },
       isLoggedIn: isLoggedIn,
       setIsLoggedIn,
       setUserName,
+      setUserFeed,
     }),
-    [isLoggedIn, userName, setIsLoggedIn, setUserName]
+    [isLoggedIn, userName, setIsLoggedIn, setUserName, userFeed]
   );
 
   return (
