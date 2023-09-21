@@ -1,38 +1,70 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { Flex } from '@chakra-ui/react';
+import { useMemo, useState } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { AppContext } from './appState/context';
+import { routes } from './constants';
+import { Home } from './Routes/Home';
+import { Login } from './Routes/Login';
+import UserOne from './assets/user_1_thumbnail.svg';
+import UserTwo from './assets/user_2_thumbnail.svg';
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState('');
+
+  const providerValue = useMemo(
+    () => ({
+      user: {
+        name: userName,
+        feed: [
+          {
+            userName: 'Theresa Webb',
+            postedAt: Date.now(),
+            description:
+              'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+            comments: ['world', 'hello'],
+            editedAt: 0,
+            emoji: `👋`,
+            image: UserOne,
+          },
+          {
+            userName: 'Marvin McKinney',
+            postedAt: Date.now(),
+            description:
+              'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+            comments: ['world'],
+            editedAt: 83478487378,
+            emoji: `😞`,
+            image: UserTwo,
+          },
+        ],
+      },
+      isLoggedIn: isLoggedIn,
+      setIsLoggedIn,
+      setUserName,
+    }),
+    [isLoggedIn, userName, setIsLoggedIn, setUserName]
+  );
+
+  return (
+    <AppContext.Provider value={providerValue}>
+      <Flex
+        backgroundColor='#131319'
+        width='100%'
+        height='100%'
+        color='white'
+        justifyContent='center'
+        fontFamily='Inter'
+        overflowY='scroll'
+      >
+        <Routes>
+          <Route path={routes.home} element={<Home />} />
+          <Route path={routes.login} element={<Login />} />
+          <Route path='*' element={<Navigate to={routes.home} replace />} />
+        </Routes>
+      </Flex>
+    </AppContext.Provider>
+  );
+}
+
+export default App;
