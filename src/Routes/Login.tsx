@@ -1,12 +1,10 @@
 import { Box, Flex } from '@chakra-ui/react';
-import { Card } from '../components/Card/Card';
+import { LoginCard } from '../components/LoginCard/LoginCard';
 
 export const Login = () => {
   return (
-    <Box>
-      <Card>
-        <Flex>Login card</Flex>
-      </Card>
-    </Box>
+    <Flex justifyContent='center' alignItems='center'>
+      <LoginCard />
+    </Flex>
   );
 };

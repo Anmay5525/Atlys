@@ -56,6 +56,7 @@ function App() {
         justifyContent='center'
         fontFamily='Inter'
         overflowY='scroll'
+        paddingBottom='12px'
       >
         <Routes>
           <Route path={routes.home} element={<Home />} />

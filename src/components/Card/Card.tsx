@@ -5,14 +5,20 @@ export const CardHeader = ({ children }: { children: ReactNode }) => {
   return <Box marginBottom='16px'>{children}</Box>;
 };
 
-export const CardBody = ({ children }: { children: ReactNode }) => {
+export const CardBody = ({
+  children,
+  backgroundColor,
+  borderRadius,
+}: {
+  children: ReactNode;
+  backgroundColor?: string;
+  borderRadius?: string;
+}) => {
   return (
     <Box
-      paddingY='16px'
-      paddingX='28px'
-      backgroundColor='#191920'
-      borderRadius='8px'
       color='#7F8084'
+      backgroundColor={backgroundColor}
+      borderRadius={borderRadius}
     >
       {children}
     </Box>
@@ -20,7 +26,7 @@ export const CardBody = ({ children }: { children: ReactNode }) => {
 };
 
 export const CardFooter = ({ children }: { children: ReactNode }) => {
-  return <Box marginTop='16px'>{children}</Box>;
+  return <Box marginTop='14px'>{children}</Box>;
 };
 
 export const Card = ({ children }: { children: ReactNode }) => {
@@ -31,6 +37,7 @@ export const Card = ({ children }: { children: ReactNode }) => {
       backgroundColor='#27292D'
       borderRadius='8px'
       border='2px solid #35373B'
+      width='100%'
     >
       {children}
     </Flex>
