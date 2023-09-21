@@ -1,4 +1,4 @@
-import { Alert, Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../appState/context';
