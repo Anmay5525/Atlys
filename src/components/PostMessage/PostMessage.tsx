@@ -36,7 +36,6 @@ export const PostMessage = () => {
 
     //post message
     setUserFeed((prevFeed) => [
-      ...prevFeed,
       {
         userName: user.name as string,
         postedAt: Date.now(),
@@ -46,6 +45,7 @@ export const PostMessage = () => {
         emoji: `👋`,
         image: UserOne,
       },
+      ...prevFeed,
     ]);
     setMessage('');
   };
